@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Pendaftaran Mahasiswa Baru</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 60%;
+      margin: 30px auto;
+      background: #fff;
+      padding: 20px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .progressbar {
+      display: flex;
+      justify-content: space-between;
+      counter-reset: step;
+      margin: 20px 0 30px;
+    }
+    .progressbar li {
+      list-style-type: none;
+      width: 100%;
+      position: relative;
+      text-align: center;
+      color: #aaa;
+      font-weight: bold;
+    }
+    .progressbar li:before {
+      counter-increment: step;
+      content: counter(step);
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      border: 2px solid #ffa500;
+      display: block;
+      text-align: center;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      background-color: white;
+      color: #aaa;
+    }
+    .progressbar li:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: #ffa500;
+      top: 15px;
+      left: -50%;
+      z-index: -1;
+    }
+    .progressbar li:first-child:after {
+      content: none;
+    }
+    .progressbar li.active {
+      color: #ffa500;
+    }
+    .progressbar li.active:before {
+      border-color: #ffa500;
+      background: #ffa500;
+      color: white;
+    }
+    .step {
+      display: none;
+    }
+    .step.active {
+      display: block;
+    }
+    .buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+    button {
+      background-color: #ffa500;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .preview-box {
+      background: #fafafa;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Form Pendaftaran Mahasiswa Baru</h2>
+    <ul class="progressbar">
+      <li class="active">Data Diri</li>
+      <li>Alamat</li>
+      <li>Pendidikan</li>
+      <li>Data Orang Tua</li>
+      <li>Dokumen</li>
+      <li>Review</li>
+    </ul>
+
+    <form id="regForm">
+ 
+      <div class="step active">
+        <label>Nama Lengkap:</label>
+        <input type="text" name="nama" required>
+        <label>NIK:</label>
+        <input type="text" name="nik" required>
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        <label>No HP:</label>
+        <input type="text" name="hp" required>
+      </div>
+
+      
+      <div class="step">
+        <label>Alamat Lengkap:</label>
+        <textarea name="alamat" required></textarea>
+        <label>Kecamatan:</label>
+        <input type="text" name="kecamatan" required>
+        <label>Kota:</label>
+        <input type="text" name="kota" required>
+        <label>Kode Pos:</label>
+        <input type="text" name="kodepos" required>
+      </div>
+
+    
+      <div class="step">
+        <label>Asal Sekolah:</label>
+        <input type="text" name="asal_sekolah" required>
+        <label>Alamat Sekolah:</label>
+        <input type="text" name="alamat_sekolah" required>
+        <label>Kode Pos Sekolah:</label>
+        <input type="text" name="kodepos_sekolah" required>
+        <label>Tahun Lulus:</label>
+        <input type="number" name="tahun_lulus" required>
+        <label>Jurusan yang Diambil:</label>
+        <select name="jurusan" required>
+          <option value="">--Pilih Jurusan--</option>
+          <option>Teknik Informatika</option>
+          <option>Sistem Informasi</option>
+          <option>Manajemen</option>
+          <option>Akuntansi</option>
+          <option>Hukum</option>
+        </select>
+        <label>Program Studi yang Diambil:</label>
+        <select name="program_studi" required>
+          <option value="">--Pilih Program Studi--</option>
+          <option>S1</option>
+          <option>S2</option>
+          <option>D3</option>
+        </select>
+      </div>
+
+     
+      <div class="step">
+        <label>Nama Ayah:</label>
+        <input type="text" name="nama_ayah" required>
+        <label>Pekerjaan Ayah:</label>
+        <input type="text" name="pekerjaan_ayah" required>
+        <label>Nama Ibu:</label>
+        <input type="text" name="nama_ibu" required>
+        <label>Pekerjaan Ibu:</label>
+        <input type="text" name="pekerjaan_ibu" required>
+        <label>No HP Orang Tua:</label>
+        <input type="text" name="hp_ortu" required>
+      </div>
+
+      
+      <div class="step">
+        <label>Foto Diri (.jpg/.png):</label>
+        <input type="file" name="foto_diri" accept=".jpg,.jpeg,.png" required>
+        <label>Foto Ijazah (.jpg/.png):</label>
+        <input type="file" name="foto_ijazah" accept=".jpg,.jpeg,.png" required>
+        <label>Foto Kartu Keluarga (.jpg/.png):</label>
+        <input type="file" name="foto_kk" accept=".jpg,.jpeg,.png" required>
+        <label>Dokumen Pendukung (.jpg/.png):</label>
+        <input type="file" name="dok_pendukung" accept=".jpg,.jpeg,.png">
+      </div>
+
+      
+      <div class="step">
+        <h3>Review Data</h3>
+        <div class="preview-box" id="preview"></div>
+      </div>
+
+      <div class="buttons">
+        <button type="button" id="prevBtn">Sebelumnya</button>
+        <button type="button" id="nextBtn">Lanjut</button>
+        <button type="submit" id="submitBtn" style="display:none;">Kirim</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const steps = document.querySelectorAll(".step");
+    const progress = document.querySelectorAll(".progressbar li");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const submitBtn = document.getElementById("submitBtn");
+    let current = 0;
+
+    function showStep(n) {
+      steps.forEach((step,i)=>{
+        step.classList.toggle("active", i===n);
+        progress[i].classList.toggle("active", i<=n);
+      });
+      prevBtn.style.display = n===0 ? "none":"inline-block";
+      nextBtn.style.display = n===steps.length-1 ? "none":"inline-block";
+      submitBtn.style.display = n===steps.length-1 ? "inline-block":"none";
+    }
+
+    nextBtn.addEventListener("click", ()=>{
+      if(document.querySelector(".step.active input:invalid, .step.active select:invalid, .step.active textarea:invalid")){
+        alert("Lengkapi data terlebih dahulu!");
+        return;
+      }
+      current++;
+      if(current>=steps.length) current=steps.length-1;
+      if(current===steps.length-1) fillPreview();
+      showStep(current);
+    });
+
+    prevBtn.addEventListener("click", ()=>{
+      current--;
+      if(current<0) current=0;
+      showStep(current);
+    });
+
+    function fillPreview(){
+      const formData = new FormData(document.getElementById("regForm"));
+      let html = "";
+      for(const [key,value] of formData.entries()){
+        if(value instanceof File){
+          html += `<p><b>${key}</b>: ${value.name}</p>`;
+        } else {
+          html += `<p><b>${key}</b>: ${value}</p>`;
+        }
+      }
+      document.getElementById("preview").innerHTML = html;
+    }
+
+    showStep(current);
+  </script>
+</body>
+</html>
